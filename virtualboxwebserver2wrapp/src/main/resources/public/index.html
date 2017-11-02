@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Start Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script type="text/javascript" src="jquery.ajax-cross-origin.min.js"></script>
+        <script type="text/javascript" src="user.js"></script>
+    </head>
+    <body>
+        <h1 style="text-align: center;">CRUD Usuarios Sistema VirtualBox Web Manager</h1>  
+        
+        <div id="dashboard_div">
+            <form action="" style="margin-left: 28%;">
+                
+                Id: <input type="number" id="id" value=""><br/>
+                Identificacion: <input type="number" id="identificacion" value=""><br/>
+                Nombres: <input type="text" id="nombres"><br/>
+                Apellidos: <input type="text" id="apellidos"><br/>
+                Email: <input type="text" id="email"><br/>
+                Celular: <input type="number" id="celular" value=""><br/>
+                Telefono: <input type="number" id="telefono" value=""><br/>
+                Tipo Usuario: <input type="text" id="tipousuario"><br/>
+                Contrasena: <input type="text" id="contrasena"><br/>                 
+
+                
+                <button type="button" id="add">Add Usuario</button>
+                <button type="button" id="upd">Upd User</button>
+                <button type="button" id="findone">Find User</button>
+                <button type="button" id="delete">Delete User</button>
+                <button type="button" id="findall">Find Users</button>
+                <input type="reset" value="Reset">  
+            </form>
+            <br/>
+            <div id="table_div"></div>
+        </div>
+    </body>
+</html>
+

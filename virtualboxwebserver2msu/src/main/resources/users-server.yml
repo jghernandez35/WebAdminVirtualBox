@@ -1,0 +1,25 @@
+# Spring properties
+spring:
+  application:
+     name: users-service  # Service registers under this name
+  datasource:
+     url: jdbc:mysql://localhost:3306/webadminvirtualbox
+     username: root
+     password:
+     driver-class-name: com.mysql.jdbc.Driver
+ 
+# HTTP Server
+server:
+  port: 2222   # HTTP (Tomcat) port
+  address: 192.168.1.4     
+
+# Discovery Server Access
+#  1. DEV ONLY: Reduce the lease renewal interval to speed up registration
+#  2. Define URL of registration server (defaultZone)
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://192.168.1.4:1111/eureka/
+  instance:
+    preferIpAddress: true  
+    #leaseRenewalIntervalInSeconds: 5   # DO NOT DO THIS IN PRODUCTION
