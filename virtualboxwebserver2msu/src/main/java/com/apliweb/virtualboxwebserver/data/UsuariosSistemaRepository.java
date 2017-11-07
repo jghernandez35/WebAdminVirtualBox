@@ -5,7 +5,10 @@
  */
 package com.apliweb.virtualboxwebserver.data;
 
+import java.util.List;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -13,4 +16,10 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface UsuariosSistemaRepository extends CrudRepository<UserA,String>{
     
+    //busca un usuario por el campo EMAIL pero tengo problemas con el ".com" de los emails asi que toca cambiar la logica
+    // para que ese campo sea mejor el usuario.
+    @Query(value = "SELECT * FROM usuarios_sistema us WHERE us.EMAIL = ?1", nativeQuery = true)
+    UserA findByEmail(String email);
+    //raund 3 List<UserA> findByEmail(String email);  
+   
 }

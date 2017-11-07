@@ -28,6 +28,13 @@ $(function () {
 });
 
 $(function () {
+    $("#findemail").click(function (event) {
+        var emailu = $("#email").prop("value");
+        retrieveUserEmail(emailu);
+    });
+});
+
+$(function () {
     $("#add").click(function (event) {
         var idu = $("#id").prop("value");
         var identificacionu = $("#identificacion").prop("value");
@@ -125,6 +132,22 @@ function retrieveUser(idu) {
     }, "json");
 }
 
+function retrieveUserEmail(emailu) {
+    //retrieve JSON data
+    $.get("http://192.168.1.4:8085/user/findemail/" + emailu + "/", function (rData, status) {
+        //alert("Data: " + rData.toString() + "\nStatus: " + status);
+        drawUser(rData);
+    }, "json");
+}
+
+function retrieveUser2(idu) {
+    //retrieve JSON data
+    $.get("http://192.168.1.4:8085/user/find2/" + idu + "/", function (rData, status) {
+        //alert("Data: " + rData.toString() + "\nStatus: " + status);
+        drawUser(rData);
+    });
+}
+
 // passes in the data and draws it.
 function drawUsers(jsonData) {
     // Create our data table out of JSON data loaded
@@ -169,7 +192,7 @@ function drawUsers(jsonData) {
             $("#celular").val(data.getValue(selectedItem.row, 5));
             $("#telefono").val(data.getValue(selectedItem.row, 6));
             $("#tipousuario").val(data.getValue(selectedItem.row, 7));
-            $("#nombres").val(data.getValue(selectedItem.row, 8));
+            $("#contrasena").val(data.getValue(selectedItem.row, 8));
         }
     }
 }

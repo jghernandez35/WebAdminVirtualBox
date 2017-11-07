@@ -1,15 +1,92 @@
+<%-- 
+    Document   : index
+    Created on : 4/11/2017, 06:18:04 PM
+    Author     : AcerF5w10
+--%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-    "http://www.w3.org/TR/html4/loose.dtd">
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href=<c:url value="resources/assets/ico/favicon.ico"/>>
 
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to Spring Web MVC project</title>
-    </head>
+    <title>VirtualBox WebServer</title>
 
-    <body>
-        <p>Hello! This is the default welcome page for a Spring Web MVC project.</p>
-        <a href="prueba.html">Ir a Data</a>
-    </body>
+    <!-- Bootstrap core CSS -->
+  <link href=<c:url value="resources/assets/css/bootstrap.css"/> rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href=<c:url value="resources/assets/css/style.css"/> rel="stylesheet">
+    <link href=<c:url value="resources/assets/css/font-awesome.min.css"/> rel="stylesheet">
+    <link href=<c:url value="resources/assets/js/fancybox/jquery.fancybox.css"/> rel="stylesheet" />
+
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body data-spy="scroll" data-offset="0" data-target="#theMenu">
+		
+	<!-- Menu -->
+	<nav class="menu" id="theMenu">
+		<div class="menu-wrap">
+			<h1 class="logo"><a href="index.html">Inicio</a></h1>
+			<i class="fa fa-times menu-close"></i>
+			<a href="inicio.html" class="smoothScroll">Iniciar sesión</a>
+		</div>
+		
+		<!-- Menu button -->
+		<div id="menuToggle"><i class="fa fa-bars"></i></div>
+	</nav>
+
+	<section id="home" name="home"></section>
+	<div id="headerwrap">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3">
+					<h1>Virtual-Box Web-Server</h1>
+				</div>
+			</div><! --/row -->
+		</div><! --/container -->
+	</div><! --/headerwrap -->
+
+	
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"/>></script>
+    <script src=<c:url value="resources/assets/js/classie.js"/>/>></script>
+<script src=<c:url value="resources/assets/js/bootstrap.min.js"/>></script>
+        <script src=<c:url value="resources/assets/js/smoothscroll.js"/>></script>
+        <script src=<c:url value="resources/assets/js/jquery.stellar.min.js"/>></script>
+            <script src=<c:url value="resources/assets/js/fancybox/jquery.fancybox.js"/>></script>    
+            <script src=<c:url value="resources/assets/js/main.js"/>></script>
+		<script>
+		$(function(){
+			$.stellar({
+				horizontalScrolling: false,
+				verticalOffset: 40
+			});
+		});
+		</script>
+		
+		<script type="text/javascript">
+      $(function() {
+        //    fancybox
+          jQuery(".fancybox").fancybox();
+      });
+	   </script>
+
+  </body>
 </html>

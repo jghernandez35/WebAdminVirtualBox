@@ -32,10 +32,10 @@ public class UsersService {
     public UsersService(String serviceUrl) {
         this.serviceUrl = serviceUrl.startsWith("http") ? serviceUrl : "http://" + serviceUrl;
     }
-
+    
     public String add(UserA juser) {
         System.out.println("En UsersService ==> ADD juser.getNombres() _ serviceUrl "+ juser.getNombres()+"_"+serviceUrl);
-        String result = restTemplate.postForObject(serviceUrl
+        String result = restTemplate.postForObject(serviceUrl 
                 + "/user/add", juser, String.class);
         return result;
     }
@@ -52,6 +52,26 @@ public class UsersService {
         }
     }
 
+    public UserA findEmail(String email) {
+        System.out.println("En UsersService ==> FINDEMAIL serviceUrl _ EMAIL= "+ serviceUrl+" "+ email);
+        UserA user = restTemplate.getForObject(serviceUrl
+                + "/user/findemail/{email}", UserA.class, email);
+
+        //if (user == null) {
+        //    return null;
+        //} else {
+            System.out.println("En UsersService < == FINDEMAIL _ users.getNombres() : "+user.getNombres());
+            return user;
+        //}
+    }
+
+        public String find2(String idu) {
+        System.out.println("En UsersService ==> FIND2 serviceUrl _ IDU "+ serviceUrl+"_"+idu);
+        String user = restTemplate.getForObject(serviceUrl
+                + "/user/find2/{idu}", String.class, idu);
+        return user;
+    }
+        
     public UserA find(String idu) {
         System.out.println("En UsersService ==> FIND serviceUrl _ IDU "+ serviceUrl+"_"+idu);
         UserA user = restTemplate.getForObject(serviceUrl
@@ -71,5 +91,5 @@ public class UsersService {
                 + "/user/upd", juser);
         return "updated";
     }
-    
+
 }

@@ -44,21 +44,36 @@ public class UsersWrapper {
         return usersService.findAll();
     }
     
+    @RequestMapping(value="/user/find2/{idu}", method=RequestMethod.GET)
+    public @ResponseBody String find2 (@PathVariable("idu") String idu){
+        System.out.println("En UserWrapper GET => /user/find2/{idu}"+ idu);
+        return usersService.find2(idu);
+    }   
+    
+    @RequestMapping(value="/user/findemail/{email}", method=RequestMethod.GET)
+    public @ResponseBody UserA findEmail (@PathVariable("email") String email){
+        System.out.println("En UserWrapper GET => /user/findEmail/{email}"+ email);
+        UserA user = usersService.findEmail(email);
+        //if(user.getNombres().equals("error")){
+            return user;
+        //}else return user;
+    }
+          
     @RequestMapping(value="/user/find/{idu}", method=RequestMethod.GET)
     public @ResponseBody UserA find (@PathVariable("idu") String idu){
         System.out.println("En UserWrapper GET => /user/find/{idu}"+ idu);
         return usersService.find(idu);
     }
       
-    @RequestMapping(value="/user/delete", method=RequestMethod.DELETE)
+    @RequestMapping(value="/user/delete", method=RequestMethod.POST)
     public @ResponseBody String delete (@RequestBody String idu){
         System.out.println("En UserWrapper DELETE => /user/delete"+ idu);
         return usersService.delete(idu);
     }
     
-    @RequestMapping(value="/user/upd", method=RequestMethod.PUT)
+    @RequestMapping(value="/user/upd", method=RequestMethod.POST)
     public @ResponseBody String upd (@RequestBody UserA jsonuser){
-        System.out.println("En UserWrapper PUT => "+ jsonuser.getNombres());
+        System.out.println("En UserWrapper PUT-POST => "+ jsonuser.getNombres());
         return usersService.upd(jsonuser);
     }    
     
