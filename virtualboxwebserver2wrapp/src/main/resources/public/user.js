@@ -52,7 +52,7 @@ $(function () {
 
 function addUser(juser) {
     $.ajax({
-        url: 'http://192.168.1.4:8085/user/add',
+        url: 'http://192.168.43.133:8085/user/add',
         type: 'post',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -82,7 +82,7 @@ $(function () {
 
 function updUser(jsonuser) {
     $.ajax({
-        url: 'http://192.168.1.4:8085/user/upd/',
+        url: 'http://192.168.43.133:8085/user/upd/',
         type: 'put',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -104,7 +104,7 @@ $(function () {
 function delUser(id) {
     //delete data
     $.ajax({
-        url: 'http://192.168.1.4:8085/user/delete/',
+        url: 'http://192.168.43.133:8085/user/delete/',
         type: 'delete',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
@@ -118,7 +118,7 @@ function delUser(id) {
 
 function retrieveUsers() {
     //retrieve JSON data
-    $.get("http://192.168.1.4:8085/user/findall/", function (rData, status) {
+    $.get("http://192.168.43.133:8085/user/findall/", function (rData, status) {
         alert("Data: " + rData.toString() + "\nStatus: " + status);
         drawUsers(rData);
     }, "json");
@@ -126,7 +126,7 @@ function retrieveUsers() {
 
 function retrieveUser(idu) {
     //retrieve JSON data
-    $.get("http://192.168.1.4:8085/user/find/" + idu + "/", function (rData, status) {
+    $.get("http://192.168.43.133:8085/user/find/" + idu + "/", function (rData, status) {
         //alert("Data: " + rData.toString() + "\nStatus: " + status);
         drawUser(rData);
     }, "json");
@@ -134,7 +134,7 @@ function retrieveUser(idu) {
 
 function retrieveUserEmail(emailu) {
     //retrieve JSON data
-    $.get("http://192.168.1.4:8085/user/findemail/" + emailu + "/", function (rData, status) {
+    $.get("http://192.168.43.133:8085/user/findemail/" + emailu + "/", function (rData, status) {
         //alert("Data: " + rData.toString() + "\nStatus: " + status);
         drawUser(rData);
     }, "json");
@@ -142,7 +142,7 @@ function retrieveUserEmail(emailu) {
 
 function retrieveUser2(idu) {
     //retrieve JSON data
-    $.get("http://192.168.1.4:8085/user/find2/" + idu + "/", function (rData, status) {
+    $.get("http://192.168.43.133:8085/user/find2/" + idu + "/", function (rData, status) {
         //alert("Data: " + rData.toString() + "\nStatus: " + status);
         drawUser(rData);
     });

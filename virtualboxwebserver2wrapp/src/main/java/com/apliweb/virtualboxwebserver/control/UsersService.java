@@ -5,6 +5,7 @@
  */
 package com.apliweb.virtualboxwebserver.control;
 
+import com.apliweb.virtualboxwebserver.data.MaquinaVirtual;
 import com.apliweb.virtualboxwebserver.data.UserA;
 import java.util.Arrays;
 import java.util.List;
@@ -26,11 +27,13 @@ public class UsersService {
     protected RestTemplate restTemplate;
 
     protected String serviceUrl;
+    protected String serviceUrl2;
 
     protected Logger logger = Logger.getLogger(UsersService.class.getName());
 
-    public UsersService(String serviceUrl) {
+    public UsersService(String serviceUrl,String serviceUrl2) {
         this.serviceUrl = serviceUrl.startsWith("http") ? serviceUrl : "http://" + serviceUrl;
+        this.serviceUrl2 = serviceUrl2.startsWith("http") ? serviceUrl2 : "http://" + serviceUrl2;
     }
     
     public String add(UserA juser) {
@@ -56,13 +59,8 @@ public class UsersService {
         System.out.println("En UsersService ==> FINDEMAIL serviceUrl _ EMAIL= "+ serviceUrl+" "+ email);
         UserA user = restTemplate.getForObject(serviceUrl
                 + "/user/findemail/{email}", UserA.class, email);
-
-        //if (user == null) {
-        //    return null;
-        //} else {
             System.out.println("En UsersService < == FINDEMAIL _ users.getNombres() : "+user.getNombres());
             return user;
-        //}
     }
 
         public String find2(String idu) {
@@ -91,5 +89,60 @@ public class UsersService {
                 + "/user/upd", juser);
         return "updated";
     }
+    
+    // PARTE DEL SERVICIO DE MAQUINAS VIRTUALES INICIO
+    
+    public String vadd(MaquinaVirtual jvuser) {
+        System.out.println("En VIRTUAL UsersService ==> VADD jvuser.getUsuNombre() _ serviceUrl2 "+ jvuser.getUsuNombre()+"_"+serviceUrl2);
+        String result = restTemplate.postForObject(serviceUrl2 
+                + "/user/vadd", jvuser, String.class);
+        return result;
+    }
 
+    public List<MaquinaVirtual> vfindAll() {
+        System.out.println("En VIRTUAL UsersService ==> VFINDALL serviceUrl2 = "+ serviceUrl2);
+        MaquinaVirtual[] vusers = restTemplate.getForObject(serviceUrl2
+                + "/user/vfindall", MaquinaVirtual[].class);
+
+        if (vusers == null || vusers.length == 0) {
+            return null;
+        } else {
+            return Arrays.asList(vusers);
+        }
+    }
+
+    public MaquinaVirtual vfindUsu_id(String usu_id) {
+        System.out.println("En VIRTUAL UsersService ==> VFINDUSU_ID serviceUrl2 _ USU_ID= "+ serviceUrl2+" "+ usu_id);
+        MaquinaVirtual vuser = restTemplate.getForObject(serviceUrl2
+                + "/user/vfindusu_id/{usu_id}", MaquinaVirtual.class, usu_id);
+            System.out.println("En UsersService < == VFINDUSU_ID _ vuser.getUsuNombre() : "+vuser.getUsuNombre());
+            return vuser;
+    }
+
+        public String vfind2(String idmv) {
+        System.out.println("En VIRTUAL UsersService ==> VFIND2 serviceUrl2 _ IDU "+ serviceUrl2+"_"+idmv);
+        String user = restTemplate.getForObject(serviceUrl2
+                + "/user/vfind2/{idmv}", String.class, idmv);
+        return user;
+    }
+        
+    public MaquinaVirtual vfind(String idmv) {
+        System.out.println("En VIRTUAL UsersService ==> VFIND serviceUrl2 _ IDMV "+ serviceUrl2+"_"+idmv);
+        MaquinaVirtual vuser = restTemplate.getForObject(serviceUrl2
+                + "/user/vfind/{idmv}", MaquinaVirtual.class, idmv);
+        return vuser;
+    }
+
+    public String vdelete(String idmv) {
+        System.out.println("En VIRTUAL UsersService ==> VDELETE serviceUrl2 _ IDU "+ serviceUrl2+"_"+idmv);
+        restTemplate.delete(serviceUrl2+"/user/vdelete/"+idmv);
+        return "Deleted";
+    }
+
+    public String vupd(MaquinaVirtual jvuser) {
+        System.out.println("En VIRTUAL UsersService ==> VUPD jvuser.getUsuNombre() _serviceUrl2 "+ jvuser.getUsuNombre()+"_"+serviceUrl2);        
+        restTemplate.put(serviceUrl2
+                + "/user/vupd", jvuser);
+        return "updated";
+    }
 }

@@ -22,7 +22,10 @@ import org.springframework.web.client.RestTemplate;
 @EnableDiscoveryClient
 public class WrapperServer {
     
+    //para servico de usuarios
     public static final String USERS_SERVICE_URL = "http://USERS-SERVICE";
+    //para servicio de maquinas virtuales
+    public static final String USERS_SERVICE_URL2 = "http://USERS-SERVICE2";
     
  	public static void main(String[] args) {
 		// Tell server to look for web-server.properties or web-server.yml
@@ -42,20 +45,33 @@ public class WrapperServer {
 	 * @return A new service instance.
 	 */
         
+        //para servico de usuarios
 	@Bean
 	public UsersService usersService() {
-		return new UsersService(USERS_SERVICE_URL);
+		return new UsersService(USERS_SERVICE_URL,USERS_SERVICE_URL2);
 	}
-
+        
+        //para servicio de maquinas virtuales
+	/*@Bean
+	public UsersService usersService2() {
+		return new UsersService(USERS_SERVICE_URL2);
+	}*/
 	/**
 	 * Create the controller, passing it the {@link UsersService} to use.
 	 * 
 	 * @return
 	 */
-	
+        
+	//para servico de usuarios
         @Bean
 	public UsersWrapper usersWrapper() {
 		return new UsersWrapper(usersService());
 	}
+        
+        //para servicio de maquinas virtuales
+        /*@Bean
+	public UsersWrapper usersWrapper2() {
+		return new UsersWrapper(usersService2());
+	}   */     
     
 }

@@ -9,7 +9,7 @@ eureka:
      
 server:
   port: 1111   # HTTP (Tomcat) port
-  address: 192.168.1.4
+  address: 192.168.43.133
 
 # Discovery Server Dashboard uses FreeMarker.  Don't want Thymeleaf templates
 spring:

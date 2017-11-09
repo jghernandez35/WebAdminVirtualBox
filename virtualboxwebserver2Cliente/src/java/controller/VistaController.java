@@ -6,21 +6,16 @@
 package controller;
 
 
-import com.sun.media.jfxmedia.logging.Logger;
+import entity.MaquinaVirtual;
 import entity.Sesion;
 import entity.UserA;
-import java.net.URI;
-import java.net.URISyntaxException;
 import model.StringMD;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.portlet.ModelAndView;
-import org.springframework.web.portlet.bind.annotation.RenderMapping;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -36,13 +31,97 @@ public class VistaController {
     public Sesion s;
     RestTemplate restTemplate = new RestTemplate();
     
-/*    @RequestMapping("index")
-    public ModelAndView redireccion(){
-        ModelAndView MV = new ModelAndView();
-        MV.setView("index");
-        return MV;
-    }*/
+    @RequestMapping(value = "admin_maquinas", method = RequestMethod.GET)
+    public String admin_maquinas(Model m) throws ParseException{
+        String aux = restTemplate.getForObject("http://192.168.43.133:8085/user/vfindall/", String.class);//tendria que usar el servicio para buscar un usuario
+        System.out.println("Objeto traido desde Servicio /user/vfindall/ AUX: "+aux);
+        Object obj = JSONValue.parse(aux);
+        JSONArray userlist = (JSONArray) obj;
+        m.addAttribute("userlist", userlist);
+        return "admin/admin_maquinas";
+    }
+    
+    @RequestMapping(value = "admin_agregar_maquina", method = RequestMethod.GET)
+    public String admin_agregar_maquina(Model m){
+        MaquinaVirtual aux = new MaquinaVirtual();
+        m.addAttribute("aux", aux);        
+        return "admin/admin_agregar_maquina";
+    }
+    
+    @RequestMapping(value = "admin_agregar_maquina2", method = RequestMethod.GET)
+    public String admin_agregar_maquina2(@ModelAttribute(value = "maquina") MaquinaVirtual mv , Model m) throws ParseException{
+        System.out.println("Formulario ADD maquina mv.getId(): "+mv.getId());
+        System.out.println("Formulario ADD maquina mv.getUsuIndex(): "+mv.getUsuIndex());
+        System.out.println("Formulario ADD maquina mv.getUsuNombre(): "+mv.getUsuNombre());
+        System.out.println("Formulario ADD maquina mv.getUsuid(): "+mv.getUsuId());
+        System.out.println("Formulario ADD maquina mv.getUsoCpu(): "+mv.getUsoCpu());
+        System.out.println("Formulario ADD maquina mv.getUsoMemoria(): "+mv.getUsoMemoria());
+        System.out.println("Formulario ADD maquina mv.getUsoProcesamiento(): "+mv.getUsoProcesamiento());
+        String aux = restTemplate.postForObject("http://192.168.43.133:8085/user/vadd/", mv, String.class);
+        System.out.println("Respuesta Metodo POST: "+aux);
+        return admin_maquinas(m);
+    }
+    
+    @RequestMapping(value = "admin_ver_maquina", method = RequestMethod.GET)
+    public String admin_ver_maquina(@ModelAttribute(value = "id") String id, Model m) throws ParseException{
+        MaquinaVirtual mv = new MaquinaVirtual();
+        String aux = restTemplate.getForObject("http://192.168.43.133:8085/user/vfind/"+id+"/", String.class);
+        Object obj;
+        JSONParser parser = new JSONParser();
+        obj = parser.parse(aux);
+        JSONObject jsonObject = (JSONObject) obj;
+            mv.setId((String) jsonObject.get("id"));
+            mv.setUsuNombre((String) jsonObject.get("usuNombre"));
+            mv.setUsuIndex((String) jsonObject.get("usuIndex"));
+            Double um = (double) jsonObject.get("usoMemoria");
+            mv.setUsoMemoria(um);
+            Double ucpu = (double) jsonObject.get("usoCpu");
+            mv.setUsoCpu(ucpu);
+            Double up = (double) jsonObject.get("usoProcesamiento");
+            mv.setUsoProcesamiento(up);
+            mv.setUsuId((String) jsonObject.get("usuId"));
+        m.addAttribute("mv", mv);        
+        return "admin/admin_ver_maquina";
+    }
 
+    @RequestMapping(value = "admin_eliminar_maquina", method = RequestMethod.GET)
+    public String admin_eliminar_maquina(@ModelAttribute(value = "id") String id, Model m) throws ParseException{
+        System.out.println("En admin_eliminar id: "+id);
+        String aux = restTemplate.postForObject("http://192.168.43.133:8085/user/vdelete/", id, String.class);
+        System.out.println("Respuesta Metodo POST: "+aux);
+        return admin_maquinas(m);
+    }      
+    @RequestMapping(value = "admin_actualizar_maquina2", method = RequestMethod.GET)
+    public String admin_actualizar_maquina2(@ModelAttribute(value = "mv") MaquinaVirtual mv , Model m) throws ParseException{
+        String aux = restTemplate.postForObject("http://192.168.43.133:8085/user/vupd/", mv, String.class);
+        return admin_maquinas(m);
+    }     
+    
+    @RequestMapping(value = "admin_actualizar_maquina", method = RequestMethod.GET)
+    public String admin_actualizar_maquina(@ModelAttribute(value = "id") String id, Model m) throws ParseException{
+        MaquinaVirtual mv = new MaquinaVirtual();
+        String aux = restTemplate.getForObject("http://192.168.43.133:8085/user/vfind/"+id+"/", String.class);
+        Object obj;
+        JSONParser parser = new JSONParser();
+        obj = parser.parse(aux);
+        JSONObject jsonObject = (JSONObject) obj;      
+            mv.setId((String) jsonObject.get("id"));
+            mv.setUsuNombre((String) jsonObject.get("usuNombre"));
+            mv.setUsuIndex((String) jsonObject.get("usuIndex"));
+            Double um = (double) jsonObject.get("usoMemoria");
+            mv.setUsoMemoria(um);
+            Double ucpu = (double) jsonObject.get("usoCpu");
+            mv.setUsoCpu(ucpu);
+            Double up = (double) jsonObject.get("usoProcesamiento");
+            mv.setUsoProcesamiento(up);
+            mv.setUsuId((String) jsonObject.get("usuId"));
+        m.addAttribute("mv", mv);        
+        return "admin/admin_actualizar_maquina";
+    }    
+    
+// ------------------------- // -------------------------------- // ------------------------------ //
+// ------------------------- // -------------------------------- // ------------------------------ //
+    
     @RequestMapping(value = "index", method = RequestMethod.GET)
     public String index(Model m){
         m.addAttribute("sesion",s);
@@ -57,7 +136,7 @@ public class VistaController {
     @RequestMapping(value = "admin_eliminar", method = RequestMethod.GET)
     public String admin_eliminar(@ModelAttribute(value = "id") String id, Model m) throws ParseException{
         System.out.println("En admin_eliminar id: "+id);
-        String aux = restTemplate.postForObject("http://192.168.1.4:8085/user/delete/", id, String.class);
+        String aux = restTemplate.postForObject("http://192.168.43.133:8085/user/delete/", id, String.class);
         System.out.println("Respuesta Metodo POST: "+aux);
         return admin_usuarios(m);
     }      
@@ -66,14 +145,14 @@ public class VistaController {
     public String admin_actualizar2(@ModelAttribute(value = "usuario") UserA u , Model m) throws ParseException{
         String c_encriptada = encriptar(u.getContrasena());
         u.setContrasena(c_encriptada);
-        String aux = restTemplate.postForObject("http://192.168.1.4:8085/user/upd/", u, String.class);
+        String aux = restTemplate.postForObject("http://192.168.43.133:8085/user/upd/", u, String.class);
         return admin_usuarios(m);
     }     
     
     @RequestMapping(value = "admin_actualizar", method = RequestMethod.GET)
     public String admin_actualizar(@ModelAttribute(value = "email") String e, Model m) throws ParseException{
         UserA usuario = new UserA();
-        String aux = restTemplate.getForObject("http://192.168.1.4:8085/user/findemail/"+e+"/", String.class);
+        String aux = restTemplate.getForObject("http://192.168.43.133:8085/user/findemail/"+e+"/", String.class);
         Object obj;
         JSONParser parser = new JSONParser();
         obj = parser.parse(aux);
@@ -97,7 +176,7 @@ public class VistaController {
     @RequestMapping(value = "admin_ver", method = RequestMethod.GET)
     public String admin_ver(@ModelAttribute(value = "email") String e, Model m) throws ParseException{
         UserA usuario = new UserA();
-        String aux = restTemplate.getForObject("http://192.168.1.4:8085/user/findemail/"+e+"/", String.class);
+        String aux = restTemplate.getForObject("http://192.168.43.133:8085/user/findemail/"+e+"/", String.class);
         Object obj;
         JSONParser parser = new JSONParser();
         obj = parser.parse(aux);
@@ -129,14 +208,14 @@ public class VistaController {
     public String admin_agregar2(@ModelAttribute(value = "usuario") UserA u , Model m) throws ParseException{
         String c_encriptada = encriptar(u.getContrasena());
         u.setContrasena(c_encriptada);
-        String aux = restTemplate.postForObject("http://192.168.1.4:8085/user/add/", u, String.class);
+        String aux = restTemplate.postForObject("http://192.168.43.133:8085/user/add/", u, String.class);
         System.out.println("Respuesta Metodo POST: "+aux);
         return admin_usuarios(m);
     }    
     
     @RequestMapping(value = "admin_usuarios", method = RequestMethod.GET)
     public String admin_usuarios(Model m) throws ParseException{
-        String aux = restTemplate.getForObject("http://192.168.1.4:8085/user/findall/", String.class);//tendria que usar el servicio para buscar un usuario
+        String aux = restTemplate.getForObject("http://192.168.43.133:8085/user/findall/", String.class);//tendria que usar el servicio para buscar un usuario
         System.out.println("Objeto traido desde Servicio /user/findall/ AUX: "+aux);
         Object obj = JSONValue.parse(aux);
         JSONArray userlist = (JSONArray) obj;
@@ -147,11 +226,11 @@ public class VistaController {
     @RequestMapping(value = "iniciarsesion", method = RequestMethod.GET)
     public String iniciarsesion(@ModelAttribute(value = "sesion") Sesion s, Model m) throws ParseException {
         String aux = "";
-
+        
         String c_encriptada = encriptar(s.getContrasena());
         if(s.getEmail()!=""){
             System.out.println("Del Formulario correo: " + s.getEmail()+" contraseña: " + s.getContrasena());
-            aux = restTemplate.getForObject("http://192.168.1.4:8085/user/findemail/"+s.getEmail()+"/", String.class);//se usa el servicio para buscar un usuario
+            aux = restTemplate.getForObject("http://192.168.43.133:8085/user/findemail/"+s.getEmail()+"/", String.class);//se usa el servicio para buscar un usuario
         }else return "error";
         
         System.out.println("Objeto traido desde Servicio AUX: "+aux);
@@ -231,12 +310,12 @@ public class VistaController {
     public String prueba(Model m) /*throws URISyntaxException*/{
         
         //URI url = new URI("http://192.168.1.4:8085/user/find2/02");
-        String mensaje = restTemplate.getForObject("http://192.168.1.4:8085/user/find2/02", String.class);  
+        String mensaje = restTemplate.getForObject("http://192.168.43.133:8085/user/find2/02", String.class);  
         System.out.println("Desde el Servicio : "+mensaje);
         String aux = "Jose desde VistaController SpringFramework";
         m.addAttribute("mensaje",mensaje);
         m.addAttribute("aux", aux);
         return "data";
-    }
+    }   
    
 }

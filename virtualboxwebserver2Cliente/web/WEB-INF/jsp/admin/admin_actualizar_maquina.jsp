@@ -1,6 +1,6 @@
 <%-- 
-    Document   : admin_actualizar
-    Created on : 6/11/2017, 12:46:11 PM
+    Document   : admin_actualizar_maquina
+    Created on : 9/11/2017, 01:03:04 PM
     Author     : AcerF5w10
 --%>
 
@@ -52,73 +52,60 @@
 		<div id="menuToggle"><i class="fa fa-bars"></i></div> 
 	</nav>
         <!-- Menu -->
-        <!-- Formularo para agregar un usuario -->
+        <!-- Formularo para ver una maquina -->
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">
-                                <h1>Actualizar Información del usuario</h1>
+                                <h1>Actualizar Información de la maquina</h1>
                                 <h3>____________________</h3> 
-                                <form action="admin_actualizar2.html" class="form-horizontal" modelAttribute="usuario">
-                                
+                                <form action="admin_actualizar_maquina2.html" class="form-horizontal" modelAttribute="mv">
+                                  
                                   <div class="form-group">
-                                    <label class="control-label col-sm-2" for="id">Id:</label>
+                                    <label class="control-label col-sm-2" for="id">Id *:</label>
                                     <div class="col-sm-10">
-                                        <input readonly="true" type="text" class="form-control"  name="id" value="${usuario.id}" required="true">
+                                      <input readonly="true" type="text" class="form-control"  name="id" value="${mv.id}" required="true">
                                     </div>
-                                  </div>
+                                  </div>                          
                                   <div class="form-group">
-                                    <label class="control-label col-sm-2" for="identificacion">Identificación:</label>
+                                    <label class="control-label col-sm-2" for="usuNombre">Nombres *:</label>
                                     <div class="col-sm-10">
-                                      <input type="text" class="form-control" name="identificacion" value="${usuario.identificacion}" required="true">
-                                    </div>
-                                  </div>                           
-                                  <div class="form-group">
-                                    <label class="control-label col-sm-2" for="nombres">Nombres:</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="nombres" value="${usuario.nombres}" required="true">
+                                      <input type="text" class="form-control" name="usuNombre" value="${mv.usuNombre}" required="true">
                                     </div>
                                   </div>                             
                                   <div class="form-group">
-                                    <label class="control-label col-sm-2" for="apellidos">Apellidos:</label>
+                                    <label class="control-label col-sm-2" for="usuIndex">Index *:</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="apellidos" value="${usuario.apellidos}" required="true">
+                                      <input type="text" class="form-control" name="usuIndex" value="${mv.usuIndex}" required="true">
                                     </div>
                                   </div>                              
                                   <div class="form-group">
-                                    <label class="control-label col-sm-2" for="email">Usuario:</label>
+                                    <label class="control-label col-sm-2" for="usoMemoria">Memoria *:</label>
                                     <div class="col-sm-10">
-                                      <input type="text" class="form-control" name="email" value="${usuario.email}" required="true">
+                                      <input type="text" class="form-control" name="usoMemoria" value="${mv.usoMemoria}" required="true">
                                     </div>
                                   </div>
                                   <div class="form-group">
-                                    <label class="control-label col-sm-2" for="celular">celular:</label>
+                                    <label class="control-label col-sm-2" for="usoCpu">CPU *:</label>
                                     <div class="col-sm-10">
-                                      <input type="text" class="form-control" name="celular" value="${usuario.celular}" required="true">
+                                      <input type="text" class="form-control" name="usoCpu" value="${mv.usoCpu}" required="true">
                                     </div>
                                   </div>                                    
                                   <div class="form-group">
-                                    <label class="control-label col-sm-2" for="telefono">Telefono:</label>
+                                    <label class="control-label col-sm-2" for="usoProcesamiento">Procesamiento *:</label>
                                     <div class="col-sm-10">
-                                      <input type="text" class="form-control" name="telefono" value="${usuario.telefono}" required="true">
+                                      <input type="text" class="form-control" name="usoProcesamiento" value="${mv.usoProcesamiento}" required="true">
                                     </div>
-                                  </div>                           
+                                  </div>         
                                   <div class="form-group">
-                                    <label class="control-label col-sm-2" for="tipousuario">Tipousuario *:</label>
+                                    <label class="control-label col-sm-2" for="usuId">Usuario *:</label>
                                     <div class="col-sm-10">
-                                    <label class="radio-inline"><input type="radio" value="admin" name="tipousuario">admin</label>
-                                    <label class="radio-inline"><input type="radio" value="user" name="tipousuario">user</label>
+                                      <input type="text" class="form-control" name="usuId" value="${mv.usuId}" required="true">
                                     </div>
-                                  </div>                                                                                                                                                 
-                                  <div class="form-group">
-                                    <label class="control-label col-sm-2" for="contrasena">Password:</label>
-                                    <div class="col-sm-10"> 
-                                        <input type="text" class="form-control" name="contrasena" value="" placeholder="IMPORTANTE LLENAR" required="true">
-                                    </div>
-                                  </div>
+                                  </div> 
                                   <div class="form-group"> 
                                     <div class="col-sm-offset-2 col-sm-10">
-                                      <button type="submit" class="btn btn-default">Actualizar usuario</button>
-                                      <a href="admin_usuarios.html" class="btn btn-default">Atras</a>
+                                      <button type="submit" class="btn btn-default">Actualizar maquina</button>
+                                      <a href="admin_maquinas.html" class="btn btn-default">Atras</a>
                                     </div>
                                   </div>
                                 
@@ -158,4 +145,3 @@
       });
 	   </script>    
 </html>
-

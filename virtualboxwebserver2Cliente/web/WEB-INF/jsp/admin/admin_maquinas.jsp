@@ -1,6 +1,6 @@
 <%-- 
-    Document   : indexa
-    Created on : 2/11/2017, 04:47:48 PM
+    Document   : admin_maquinas
+    Created on : 9/11/2017, 12:12:07 AM
     Author     : AcerF5w10
 --%>
 
@@ -28,7 +28,12 @@
     <link href=<c:url value="resources/assets/css/style.css"/> rel="stylesheet">
     <link href=<c:url value="resources/assets/css/font-awesome.min.css"/> rel="stylesheet">
     <link href=<c:url value="resources/assets/js/fancybox/jquery.fancybox.css"/> rel="stylesheet" />
-
+    <!-- Tabla Bootstrap core CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+    
   </head>
 
   <body data-spy="scroll" data-offset="0" data-target="#theMenu">
@@ -46,17 +51,51 @@
 		<!-- Menu button -->
 		<div id="menuToggle"><i class="fa fa-bars"></i></div>
 	</nav>
-  
-	<section id="home" name="home"></section>
-	<div id="headerwrapa">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
-                                    <h1>Bienbenido Administrador </h1>
-				</div>
-			</div><! --/row -->
-		</div><! --/container -->
-	</div><! --/headerwrap -->
+        <!-- Menu -->
+        <!-- Tabla -->
+
+        <div class="container">
+          <h2>Maquinas virtuales</h2>
+          <p>Estas son las maquinas virtuales registradas en el sistema:</p>
+          <a href="admin_agregar_maquina.html" class="btn btn-primary">Agregar maquina</a>
+          <div class="table-responsive">          
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Index</th>
+                <th>Memoria</th>
+                <th>CPU</th>
+                <th>Procesamiento</th>
+                <th>Usuario</th>
+              </tr>
+            </thead>
+            <tbody>
+              <c:forEach items="${userlist}" var="u">
+              <tr>
+                <td>${u.id}</td>
+                <td>${u.usuNombre}</td>
+                <td>${u.usuIndex}</td>
+                <td>${u.usoMemoria}</td>
+                <td>${u.usoCpu}</td>
+                <td>${u.usoProcesamiento}</td>
+                <td>${u.usuId}</td>
+                <td>
+                    <a href="admin_ver_maquina.html?id=${u.id}" class="btn btn-info  btn-sm">Ver</a>
+                    <a href="admin_actualizar_maquina.html?id=${u.id}" class="btn btn-warning  btn-sm">Actualizar</a>
+                    <a href="admin_eliminar_maquina.html?id=${u.id}" class="btn btn-danger  btn-sm">Eliminar</a>
+                </td>
+              </tr>
+              </c:forEach>
+            </tbody>
+          </table>
+              <a href="indexa.html" class="btn btn-primary">Inicio</a>
+          </div>
+        </div>        
+
+        <!-- Tabla -->
+        
     </body>
     
     <!-- Bootstrap core JavaScript

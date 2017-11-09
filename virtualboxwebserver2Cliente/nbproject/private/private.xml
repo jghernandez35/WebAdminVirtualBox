@@ -4,10 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/AcerF5w10/Documents/NetBeansProjects/virtualboxwebserver2Cliente/src/java/controller/VistaController.java</file>
-            <file>file:/C:/Users/AcerF5w10/Documents/NetBeansProjects/virtualboxwebserver2Cliente/web/WEB-INF/jsp/user/indexu.jsp</file>
-            <file>file:/C:/Users/AcerF5w10/Documents/NetBeansProjects/virtualboxwebserver2Cliente/web/WEB-INF/jsp/index.jsp</file>
-            <file>file:/C:/Users/AcerF5w10/Documents/NetBeansProjects/virtualboxwebserver2Cliente/web/WEB-INF/jsp/admin/indexa.jsp</file>
-            <file>file:/C:/Users/AcerF5w10/Documents/NetBeansProjects/virtualboxwebserver2Cliente/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/AcerF5w10/Documents/NetBeansProjects/virtualboxwebserver2Cliente/web/WEB-INF/jsp/admin/admin_ver.jsp</file>
+            <file>file:/C:/Users/AcerF5w10/Documents/NetBeansProjects/virtualboxwebserver2Cliente/web/WEB-INF/jsp/admin/admin_ver_maquina.jsp</file>
         </group>
     </open-files>
 </project-private>

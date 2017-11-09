@@ -6,20 +6,12 @@
 package com.apliweb.virtualboxwebserver.data;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -28,50 +20,20 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "usuarios_sistema")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "UserA.findAll", query = "SELECT u FROM UserA u")
-    , @NamedQuery(name = "UserA.findById", query = "SELECT u FROM UserA u WHERE u.id = :id")
-    , @NamedQuery(name = "UserA.findByIdentificacion", query = "SELECT u FROM UserA u WHERE u.identificacion = :identificacion")
-    , @NamedQuery(name = "UserA.findByNombres", query = "SELECT u FROM UserA u WHERE u.nombres = :nombres")
-    , @NamedQuery(name = "UserA.findByApellidos", query = "SELECT u FROM UserA u WHERE u.apellidos = :apellidos")
-    , @NamedQuery(name = "UserA.findByEmail", query = "SELECT u FROM UserA u WHERE u.email = :email")
-    , @NamedQuery(name = "UserA.findByCelular", query = "SELECT u FROM UserA u WHERE u.celular = :celular")
-    , @NamedQuery(name = "UserA.findByTelefono", query = "SELECT u FROM UserA u WHERE u.telefono = :telefono")
-    , @NamedQuery(name = "UserA.findByTipousuario", query = "SELECT u FROM UserA u WHERE u.tipousuario = :tipousuario")
-    , @NamedQuery(name = "UserA.findByContrasena", query = "SELECT u FROM UserA u WHERE u.contrasena = :contrasena")})
 public class UserA implements Serializable {
 
-    private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 60)
     @Column(name = "ID")
     private String id;
-    @Column(name = "IDENTIFICACION")
     private Integer identificacion;
-    @Size(max = 60)
-    @Column(name = "NOMBRES")
     private String nombres;
-    @Size(max = 60)
-    @Column(name = "APELLIDOS")
     private String apellidos;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Correo electrónico no válido")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 30)
-    @Column(name = "EMAIL")
     private String email;
-    @Column(name = "CELULAR")
     private Integer celular;
-    @Column(name = "TELEFONO")
     private Integer telefono;
-    @Size(max = 20)
-    @Column(name = "TIPOUSUARIO")
     private String tipousuario;
-    @Size(max = 240)
-    @Column(name = "CONTRASENA")
     private String contrasena;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuId")
-    private List<MaquinaVirtual> maquinaVirtualList;
 
     public UserA() {
     }
@@ -151,39 +113,4 @@ public class UserA implements Serializable {
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
     }
-
-    @XmlTransient
-    public List<MaquinaVirtual> getMaquinaVirtualList() {
-        return maquinaVirtualList;
-    }
-
-    public void setMaquinaVirtualList(List<MaquinaVirtual> maquinaVirtualList) {
-        this.maquinaVirtualList = maquinaVirtualList;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof UserA)) {
-            return false;
-        }
-        UserA other = (UserA) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.apliweb.virtualboxwebserver.data.UserA[ id=" + id + " ]";
-    }
-    
 }

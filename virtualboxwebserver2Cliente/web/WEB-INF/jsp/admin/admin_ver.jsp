@@ -44,6 +44,7 @@
 			<h1 class="logo"><a href="indexa.html">Inicio</a></h1>
 			<i class="fa fa-times menu-close"></i>
 			<a href="admin_usuarios.html" class="smoothScroll">Usuarios</a>
+                        <a href="admin_maquinas.html" class="smoothScroll">Maquinas Virtuales</a>
                         <a href="index.html" class="smoothScroll">Salir</a>
 		</div>
 		
@@ -51,7 +52,7 @@
 		<div id="menuToggle"><i class="fa fa-bars"></i></div> 
 	</nav>
         <!-- Menu -->
-        <!-- Formularo para agregar un usuario -->
+        <!-- Formularo para ver un usuario -->
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 col-md-offset-3">

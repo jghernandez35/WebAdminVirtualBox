@@ -3,42 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package entity;
-
-import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
+package com.apliweb.virtualboxwebserver.data;
 
 /**
  *
  * @author AcerF5w10
  */
-@Entity
-@Table(name = "maquina_virtual")
-@XmlRootElement
-public class MaquinaVirtual implements Serializable{
-
-
-    @Id
-    @Basic(optional = false)
-    @Column(name = "ID")
-    private String id;
-    private Double usoMemoria;
-    private Double usoCpu;
-    private Double usoProcesamiento;
-    private String usuNombre;
-    private String usuIndex;
-    private String usuId;
+public class MaquinaVirtual {
+    protected String id;
+    protected String usuNombre;
+    protected String usuIndex;
+    protected Double usoMemoria;
+    protected Double usoCpu;
+    protected Double usoProcesamiento;
+    protected String usuId;  
 
     public MaquinaVirtual() {
-    }
-
-    public MaquinaVirtual(String id) {
-        this.id = id;
     }
 
     public String getId() {
@@ -47,6 +27,22 @@ public class MaquinaVirtual implements Serializable{
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getUsuNombre() {
+        return usuNombre;
+    }
+
+    public void setUsuNombre(String usuNombre) {
+        this.usuNombre = usuNombre;
+    }
+
+    public String getUsuIndex() {
+        return usuIndex;
+    }
+
+    public void setUsuIndex(String usuIndex) {
+        this.usuIndex = usuIndex;
     }
 
     public Double getUsoMemoria() {
@@ -73,22 +69,6 @@ public class MaquinaVirtual implements Serializable{
         this.usoProcesamiento = usoProcesamiento;
     }
 
-    public String getUsuNombre() {
-        return usuNombre;
-    }
-
-    public void setUsuNombre(String usuNombre) {
-        this.usuNombre = usuNombre;
-    }
-
-    public String getUsuIndex() {
-        return usuIndex;
-    }
-
-    public void setUsuIndex(String usuIndex) {
-        this.usuIndex = usuIndex;
-    }
-
     public String getUsuId() {
         return usuId;
     }
@@ -96,7 +76,4 @@ public class MaquinaVirtual implements Serializable{
     public void setUsuId(String usuId) {
         this.usuId = usuId;
     }
-
-
-    
 }

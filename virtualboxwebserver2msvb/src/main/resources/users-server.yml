@@ -1,7 +1,7 @@
 # Spring properties
 spring:
   application:
-     name: users-service  # Service registers under this name
+     name: users-service2  # Service registers under this name
   datasource:
      url: jdbc:mysql://localhost:3306/webadminvirtualbox
      username: root
@@ -10,7 +10,7 @@ spring:
  
 # HTTP Server
 server:
-  port: 2222   # HTTP (Tomcat) port
+  port: 3333   # HTTP (Tomcat) port
   address: 192.168.43.133     
 
 # Discovery Server Access

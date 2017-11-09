@@ -7,11 +7,8 @@ package com.apliweb.virtualboxwebserver.control;
 
 import com.apliweb.virtualboxwebserver.data.UserA;
 import com.apliweb.virtualboxwebserver.data.UsuariosSistemaRepository;
-import java.util.List;
-import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;

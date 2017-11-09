@@ -13,8 +13,10 @@ drop table if exists USUARIOS_SISTEMA;
 /*==============================================================*/
 create table MAQUINA_VIRTUAL
 (
-   ID                   int not null,
+   ID                   varchar(60) not null,
    USU_ID               varchar(60) not null,
+   USU_INDEX			varchar(60) not null,
+   USU_NOMBRE			varchar(60) not null,
    USO_MEMORIA          float(30),
    USO_CPU              float(30),
    USO_PROCESAMIENTO    float(30),

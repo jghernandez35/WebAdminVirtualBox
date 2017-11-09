@@ -5,6 +5,7 @@
  */
 package com.apliweb.virtualboxwebserver.control;
 
+import com.apliweb.virtualboxwebserver.data.MaquinaVirtual;
 import com.apliweb.virtualboxwebserver.data.UserA;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,9 @@ public class UsersWrapper {
     
     @Autowired
     protected UsersService usersService;
-
-    protected Logger logger = Logger.getLogger(UsersWrapper.class
-            .getName());
-
+    
+    protected Logger logger = Logger.getLogger(UsersWrapper.class.getName());
+    
     public UsersWrapper(UsersService usersService) {
         this.usersService = usersService;
     }
@@ -77,4 +77,51 @@ public class UsersWrapper {
         return usersService.upd(jsonuser);
     }    
     
+    //PARTE DEL SERVICIO DE MAQUINAS VIRTUALES INICIO
+ 
+    @RequestMapping(value="/user/vadd", method=RequestMethod.POST)
+    public @ResponseBody String vadd (@RequestBody MaquinaVirtual mv){
+        System.out.println("En VIRTUAL UserWrapper POST /user/vadd => "+ mv.getUsuNombre());
+        return usersService.vadd(mv);
+    }
+
+    @RequestMapping(value="/user/vfindall", method=RequestMethod.GET)
+    public @ResponseBody Iterable<MaquinaVirtual> vfindAll (){
+        System.out.println("En VIRTUAL UserWrapper GET => /user/vfindall");
+        return usersService.vfindAll();
+    }
+    
+    @RequestMapping(value="/user/vfind2/{idmv}", method=RequestMethod.GET)
+    public @ResponseBody String vfind2 (@PathVariable("idmv") String idmv){
+        System.out.println("En VIRTUAL UserWrapper GET => /user/Vfind2/{idu}"+ idmv);
+        return usersService.vfind2(idmv);
+    }   
+    
+    @RequestMapping(value="/user/vfindusu_id/{usu_id}", method=RequestMethod.GET)
+    public @ResponseBody MaquinaVirtual vfindUsu_id (@PathVariable("usu_id") String usu_id){
+        System.out.println("En VIRTUAL UserWrapper GET => /user/vfindusu_id/{usu_id}"+ usu_id);
+        MaquinaVirtual vuser = usersService.vfindUsu_id(usu_id);
+        //if(user.getNombres().equals("error")){
+            return vuser;
+        //}else return user;
+    }
+          
+    @RequestMapping(value="/user/vfind/{idmv}", method=RequestMethod.GET)
+    public @ResponseBody MaquinaVirtual vfind (@PathVariable("idmv") String idmv){
+        System.out.println("En VIRTUAL UserWrapper GET => /user/vfind/{idmv}"+ idmv);
+        return usersService.vfind(idmv);
+    }
+      
+    @RequestMapping(value="/user/vdelete", method=RequestMethod.POST)
+    public @ResponseBody String vdelete (@RequestBody String idmv){
+        System.out.println("En VIRTUAL UserWrapper DELETE => /user/vdelete"+ idmv);
+        return usersService.vdelete(idmv);
+    }
+    
+    @RequestMapping(value="/user/vupd", method=RequestMethod.POST)
+    public @ResponseBody String vupd (@RequestBody MaquinaVirtual jvuser){
+        System.out.println("En VIRTUAL UserWrapper PUT-POST => "+ jvuser.getUsuNombre());
+        return usersService.vupd(jvuser);
+    }     
+
 }
