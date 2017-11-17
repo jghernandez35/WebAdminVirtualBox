@@ -7,7 +7,6 @@ package com.apliweb.virtualboxwebserver.control;
 
 import com.apliweb.virtualboxwebserver.data.UserA;
 import com.apliweb.virtualboxwebserver.data.UsuariosSistemaRepository;
-import javax.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,7 +40,7 @@ public class UserController {
     public @ResponseBody String add (@RequestBody UserA juser){
         System.out.println("En Microservicio UserController POST /user/add juser.nombre===> "+ juser.getNombres());
         userRepository.save(juser);
-        return "Saved";
+        return "Usuario agregado correctamente";
     }
     
     @RequestMapping(value="/user/findall", method=RequestMethod.GET)
@@ -90,7 +89,7 @@ public class UserController {
     public @ResponseBody String delete (@PathVariable("idu") String idu){
         System.out.println("En Microservicio UserController DELETE /user/delete/{idu} IDU ===> "+ idu);
         userRepository.delete(idu);
-        return "Deleted";
+        return "Usuario eliminado correctamente";
     }
     
     @RequestMapping(value="/user/upd", method=RequestMethod.PUT)
@@ -100,6 +99,6 @@ public class UserController {
         System.out.println("En Microservicio UserController PUT /user/upd ELIMINADO VIEJO");
         userRepository.save(jsonuser);
         System.out.println("En Microservicio UserController PUT /user/upd AGREGADO NUEVO");
-        return "Updated";
+        return "Usuario actualizado correctamente";
     }    
 }

@@ -35,7 +35,22 @@ public class UsersService {
         this.serviceUrl = serviceUrl.startsWith("http") ? serviceUrl : "http://" + serviceUrl;
         this.serviceUrl2 = serviceUrl2.startsWith("http") ? serviceUrl2 : "http://" + serviceUrl2;
     }
+
+    public String vstop(String nombre) {
+        System.out.println("En UsersService ==> VSTOP serviceUrl _ NOMBRE "+ serviceUrl2+"_"+nombre);
+        String user = restTemplate.getForObject(serviceUrl2
+                + "/user/vstop/{nombre}", String.class, nombre);
+        return user;
+    }
     
+    public String vstart(String nombre) {
+        System.out.println("En UsersService ==> VSTART serviceUrl _ NOMBRE "+ serviceUrl2+"_"+nombre);
+        String user = restTemplate.getForObject(serviceUrl2
+                + "/user/vstart/{nombre}", String.class, nombre);
+        return user;
+    }
+
+    //--------------------------------------------------------------------------
     public String add(UserA juser) {
         System.out.println("En UsersService ==> ADD juser.getNombres() _ serviceUrl "+ juser.getNombres()+"_"+serviceUrl);
         String result = restTemplate.postForObject(serviceUrl 
@@ -63,7 +78,7 @@ public class UsersService {
             return user;
     }
 
-        public String find2(String idu) {
+    public String find2(String idu) {
         System.out.println("En UsersService ==> FIND2 serviceUrl _ IDU "+ serviceUrl+"_"+idu);
         String user = restTemplate.getForObject(serviceUrl
                 + "/user/find2/{idu}", String.class, idu);
@@ -111,15 +126,20 @@ public class UsersService {
         }
     }
 
-    public MaquinaVirtual vfindUsu_id(String usu_id) {
+    public List<MaquinaVirtual> vfindUsu_id(String usu_id) {
         System.out.println("En VIRTUAL UsersService ==> VFINDUSU_ID serviceUrl2 _ USU_ID= "+ serviceUrl2+" "+ usu_id);
-        MaquinaVirtual vuser = restTemplate.getForObject(serviceUrl2
-                + "/user/vfindusu_id/{usu_id}", MaquinaVirtual.class, usu_id);
-            System.out.println("En UsersService < == VFINDUSU_ID _ vuser.getUsuNombre() : "+vuser.getUsuNombre());
-            return vuser;
+        MaquinaVirtual[] vusers = restTemplate.getForObject(serviceUrl2
+                + "/user/vfindusu_id/{usu_id}", MaquinaVirtual[].class, usu_id);
+            //System.out.println("En UsersService < == VFINDUSU_ID _ vuser.getUsuNombre() : "+vuser.getUsuNombre());
+        if (vusers == null || vusers.length == 0) {
+            return null;
+        } else {
+            return Arrays.asList(vusers);
+        }            
+            //return vuser;
     }
 
-        public String vfind2(String idmv) {
+    public String vfind2(String idmv) {
         System.out.println("En VIRTUAL UsersService ==> VFIND2 serviceUrl2 _ IDU "+ serviceUrl2+"_"+idmv);
         String user = restTemplate.getForObject(serviceUrl2
                 + "/user/vfind2/{idmv}", String.class, idmv);

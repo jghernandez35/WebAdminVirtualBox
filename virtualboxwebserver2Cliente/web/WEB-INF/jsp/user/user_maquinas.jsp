@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ausuarios
-    Created on : 5/11/2017, 11:57:25 AM
+    Document   : admin_maquinas
+    Created on : 9/11/2017, 12:12:07 AM
     Author     : AcerF5w10
 --%>
 
@@ -41,10 +41,9 @@
 	<!-- Menu -->
 	<nav class="menu" id="theMenu">
 		<div class="menu-wrap">
-			<h1 class="logo"><a href="indexa.html">Inicio</a></h1>
+			<h1 class="logo"><a href="">Inicio</a></h1>
 			<i class="fa fa-times menu-close"></i>
-			<a href="admin_usuarios.html" class="smoothScroll">Usuarios</a>
-                        <a href="admin_maquinas.html" class="smoothScroll">Maquinas Virtuales</a>
+                        <a href="user_maquina_usuario.html?id=${id}" class="smoothScroll">Mis maquinas</a>
                         <a href="index.html" class="smoothScroll">Salir</a>
 		</div>
 		
@@ -55,55 +54,51 @@
         <!-- Tabla -->
 
         <div class="container">
-          <h2>Usuarios del Sistema</h2>
-          <p>Estos son los usuarios registrados en el sistema:</p>
-          <a href="admin_agregar.html" class="btn btn-primary">Agregar usuario</a>
+          <h2>Maquinas virtuales **** </h2>
+          <p>Estas son las maquinas virtuales encontradas:</p>
+          
           <div class="table-responsive">          
           <table class="table">
             <thead>
               <tr>
                 <th>Id</th>
-                <th>Identificacion</th>
-                <th>Nombres</th>
-                <th>Apellidos</th>
+                <th>Nombre</th>
+                <th>Index</th>
+                <th>Memoria</th>
+                <th>CPU</th>
+                <th>Procesamiento</th>
                 <th>Usuario</th>
-                <th>celular</th>
-                <th>Telefono</th>
-                <th>Tipo Usuario</th>
-                <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               <c:forEach items="${userlist}" var="u">
               <tr>
                 <td>${u.id}</td>
-                <td>${u.identificacion}</td>
-                <td>${u.nombres}</td>
-                <td>${u.apellidos}</td>
-                <td>${u.email}</td>
-                <td>${u.celular}</td>
-                <td>${u.telefono}</td>
-                <td>${u.tipousuario}</td>
+                <td>${u.usuNombre}</td>
+                <td>${u.usuIndex}</td>
+                <td>${u.usoMemoria}</td>
+                <td>${u.usoCpu}</td>
+                <td>${u.usoProcesamiento}</td>
+                <td>${u.usuId}</td>
                 <td>
-                    <a href="admin_ver.html?email=${u.email}" class="btn btn-info  btn-sm">Ver</a>
-                    <a href="admin_actualizar.html?email=${u.email}" class="btn btn-warning  btn-sm">Actualizar</a>
-                    <a href="admin_eliminar.html?id=${u.id}" class="btn btn-danger  btn-sm">Eliminar</a>
-                    <a href="user_maquina_usuario.html?id=${u.id}" class="btn  btn-sm">Buscar maquinas</a>
+                    <a href="user_ver_maquina.html?id=${u.id}" class="btn btn-info  btn-sm">Ver</a>
+                    
+                    
+                    <a href="user_start.html?nombre=${u.usuNombre}" class="btn btn-success  btn-sm">Iniciar</a>
+                    <a href="user_stop.html?nombre=${u.usuNombre}" class="btn btn-success  btn-sm">Detener</a>
                 </td>
-              </tr>
+              </tr>              
               </c:forEach>
                 <div class="alert alert-success">
                   <strong>${mensaje}</strong>
-                </div>              
+                </div>
             </tbody>
           </table>
-              <a href="indexa.html" class="btn btn-primary">Inicio</a>
+              
           </div>
         </div>        
 
         <!-- Tabla -->
-        
-        
         
     </body>
     

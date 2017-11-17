@@ -85,9 +85,14 @@
                     <a href="admin_ver_maquina.html?id=${u.id}" class="btn btn-info  btn-sm">Ver</a>
                     <a href="admin_actualizar_maquina.html?id=${u.id}" class="btn btn-warning  btn-sm">Actualizar</a>
                     <a href="admin_eliminar_maquina.html?id=${u.id}" class="btn btn-danger  btn-sm">Eliminar</a>
+                    <a href="admin_start.html?nombre=${u.usuNombre}" class="btn btn-success  btn-sm">Iniciar</a>
+                    <a href="admin_stop.html?nombre=${u.usuNombre}" class="btn btn-success  btn-sm">Detener</a>
                 </td>
-              </tr>
+              </tr>              
               </c:forEach>
+                <div class="alert alert-success">
+                  <strong>${mensaje}</strong>
+                </div>
             </tbody>
           </table>
               <a href="indexa.html" class="btn btn-primary">Inicio</a>

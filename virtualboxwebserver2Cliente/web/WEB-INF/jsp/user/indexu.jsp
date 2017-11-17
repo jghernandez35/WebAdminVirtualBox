@@ -36,13 +36,9 @@
 	<!-- Menu -->
 	<nav class="menu" id="theMenu">
 		<div class="menu-wrap">
-			<h1 class="logo"><a href="index.html">Inicio</a></h1>
+			<h1 class="logo"><a href="">Inicio</a></h1>
 			<i class="fa fa-times menu-close"></i>
-			<a href="inicio.html" class="smoothScroll">Ingresa</a>
-			<a href="#about" class="smoothScroll">About</a>
-			<a href="#portfolio" class="smoothScroll">Portfolio</a>
-			<a href="#services" class="smoothScroll">Services</a>
-			<a href="#contact" class="smoothScroll">Contact</a>
+                        <a href="user_maquina_usuario.html?id=${usuario.id}${id}" class="smoothScroll">Mis maquinas</a>
 			<a href="index.html" class="smoothScroll">Salir</a>
 		</div>
 		

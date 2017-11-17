@@ -32,6 +32,18 @@ public class UsersWrapper {
         this.usersService = usersService;
     }
     
+    @RequestMapping(value="/user/vstop/{nombre}", method=RequestMethod.GET)
+    public @ResponseBody String vstop (@PathVariable("nombre") String nombre){
+        System.out.println("En UserWrapper GET => /user/vstop/{nombre}"+ nombre);
+        return usersService.vstop(nombre);
+    }     
+    @RequestMapping(value="/user/vstart/{nombre}", method=RequestMethod.GET)
+    public @ResponseBody String vstart (@PathVariable("nombre") String nombre){
+        System.out.println("En UserWrapper GET => /user/vstart/{nombre}"+ nombre);
+        return usersService.vstart(nombre);
+    }   
+
+    //------------------------------------------------------------------------------
     @RequestMapping(value="/user/add", method=RequestMethod.POST)
     public @ResponseBody String add (@RequestBody UserA juser){
         System.out.println("En UserWrapper POST /user/add => "+ juser.getNombres());
@@ -98,11 +110,11 @@ public class UsersWrapper {
     }   
     
     @RequestMapping(value="/user/vfindusu_id/{usu_id}", method=RequestMethod.GET)
-    public @ResponseBody MaquinaVirtual vfindUsu_id (@PathVariable("usu_id") String usu_id){
+    public @ResponseBody Iterable<MaquinaVirtual> vfindUsu_id (@PathVariable("usu_id") String usu_id){
         System.out.println("En VIRTUAL UserWrapper GET => /user/vfindusu_id/{usu_id}"+ usu_id);
-        MaquinaVirtual vuser = usersService.vfindUsu_id(usu_id);
+        return usersService.vfindUsu_id(usu_id);
         //if(user.getNombres().equals("error")){
-            return vuser;
+            //return vuser;
         //}else return user;
     }
           

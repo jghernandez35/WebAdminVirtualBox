@@ -104,7 +104,7 @@
                                   </div>                                   
                                   <div class="form-group"> 
                                     <div class="col-sm-offset-2 col-sm-10">
-                                      <button type="submit" class="btn btn-default">Agregar Usuario</button>
+                                      <button type="submit" class="btn btn-default">Agregar Maquina</button>
                                       <a href="admin_maquinas.html" class="btn btn-default">Cancelar</a>
                                     </div>
                                   </div>

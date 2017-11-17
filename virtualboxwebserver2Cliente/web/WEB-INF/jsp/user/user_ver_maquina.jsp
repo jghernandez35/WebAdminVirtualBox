@@ -41,10 +41,10 @@
 	<!-- Menu -->
 	<nav class="menu" id="theMenu">
 		<div class="menu-wrap">
-			<h1 class="logo"><a href="indexa.html">Inicio</a></h1>
+			
 			<i class="fa fa-times menu-close"></i>
-			<a href="admin_usuarios.html" class="smoothScroll">Usuarios</a>
-                        <a href="admin_maquinas.html" class="smoothScroll">Maquinas Virtuales</a>
+			
+                        
                         <a href="index.html" class="smoothScroll">Salir</a>
 		</div>
 		
@@ -58,7 +58,7 @@
 				<div class="col-md-6 col-md-offset-3">
                                 <h1>Información de la maquina virtual</h1>
                                 <h3>____________________</h3> 
-                                <form action="admin_maquinas.html" class="form-horizontal">
+                                <form action="" class="form-horizontal">
                                   <span><label for="camposid">Campos Obligatorios (*)</label></span>
                                   <div class="form-group">
                                     <label class="control-label col-sm-2" for="id">Id:</label>
@@ -104,7 +104,7 @@
                                   </div> 
                                   <div class="form-group"> 
                                     <div class="col-sm-offset-2 col-sm-10">
-                                      <button readonly="true" type="submit" class="btn btn-default">Atras</button>
+                                      
                                     </div>
                                   </div>
                                 
